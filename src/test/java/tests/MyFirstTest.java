@@ -1,12 +1,17 @@
+package tests;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
+import java.time.Duration;
 
 public class MyFirstTest {
 
@@ -18,6 +23,34 @@ public class MyFirstTest {
         driver.manage().window().maximize();
     }
 
+
+    @Test
+    public void login() throws InterruptedException {
+
+        driver.get("https://demoblaze.com/");
+
+
+        //Implicit wait
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+
+        driver.findElement(By.xpath("//a[@id='login2']")).click();
+
+        //Creating a Wait Object
+        WebDriverWait wait = new WebDriverWait( driver, Duration.ofSeconds(10) );
+
+        //Storing WebElement for use of wait and sendkeys
+        WebElement userName = driver.findElement(By.id("loginusername"));
+
+        //Explicit Wait
+        wait.until(ExpectedConditions.visibilityOf(userName));
+        userName.sendKeys("User!1");
+
+    }
+
+
+
+    @Ignore
     @Test
     public void textBoxTest() {
         driver.get("https://demoqa.com/text-box");
