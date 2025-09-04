@@ -54,15 +54,14 @@ public class CartPage {
         return tdData;
     }
 
-
-
-
-
-
     public void removeItem() {
         WebElement row = table.findElement(By.cssSelector("tbody > tr"));
         WebElement td = row.findElement(By.className("remove-from-cart"));
         td.findElement(By.className("remove-btn")).click();
+    }
+
+    public WebElement getTable() {
+        return table;
     }
 
 }
