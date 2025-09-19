@@ -18,6 +18,12 @@ public class CartPage {
     @FindBy(css = ".cart")
     private WebElement table;
 
+    @FindBy(css = "#checkout")
+    private WebElement checkout;
+
+    @FindBy(id = "termsofservice")
+    private WebElement tos;
+
     private final WebDriver driver;
     private final WebDriverWait wait;
 
@@ -54,15 +60,21 @@ public class CartPage {
         return tdData;
     }
 
-
-
-
-
-
     public void removeItem() {
         WebElement row = table.findElement(By.cssSelector("tbody > tr"));
         WebElement td = row.findElement(By.className("remove-from-cart"));
         td.findElement(By.className("remove-btn")).click();
     }
+
+    public void acceptTos() {
+        tos.click();
+    }
+
+    public void clickCheckout() {
+        checkout.click();
+    }
+
+
+
 
 }
